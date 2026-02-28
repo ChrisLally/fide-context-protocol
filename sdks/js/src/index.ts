@@ -57,7 +57,11 @@ export type {
 export {
     buildStatement,
     buildStatementsWithRoot,
+    buildCanonicalStatementSet,
+    calculateCanonicalStatementSetRoot,
+    calculateStatementSetRoot,
     type StatementInput,
     type Statement,
+    type CanonicalStatementSet,
     type StatementBatchWithRoot
 } from "./statement/index.js";

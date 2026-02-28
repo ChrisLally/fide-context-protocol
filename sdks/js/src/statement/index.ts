@@ -1,8 +1,17 @@
 /**
- * FCP SDK - Statement Module
- *
- * Re-exports all statement utilities.
+ * FCP SDK - Statement Module (protocol primitives)
  */
 export { buildStatement } from "./functions/buildStatement.js";
-export { buildStatementsWithRoot } from "./functions/buildStatementsWithRoot.js";
-export type { Statement, StatementBatchWithRoot, StatementBuildOptions, StatementInput } from "./types.js";
+export { buildStatementsWithRoot, buildStatementsWithRoot as buildCanonicalStatementSet } from "./functions/buildStatementsWithRoot.js";
+export {
+  calculateCanonicalStatementSetRoot,
+  calculateStatementSetRoot,
+} from "./functions/calculateCanonicalStatementSetRoot.js";
+
+export type {
+  Statement,
+  CanonicalStatementSet,
+  StatementBatchWithRoot,
+  StatementBuildOptions,
+  StatementInput,
+} from "./types.js";
