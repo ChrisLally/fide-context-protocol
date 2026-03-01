@@ -1,0 +1,413 @@
+{
+  "@context": [
+    "https://schema.org/docs/jsonldcontext.json",
+    "https://www.w3.org/ns/prov.jsonld",
+    {
+      "fide": "https://fide.work/spec/v1/",
+      "fcp": "https://fide.work/spec/v1/context.jsonld#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "owl": "http://www.w3.org/2002/07/owl#"
+    }
+  ],
+  "@id": "fide:entity-types",
+  "@type": "schema:DefinedTermSet",
+  "schema:name": "Fide Entity Types",
+  "@graph": [
+    {
+      "@id": "fide:Statement",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Statement",
+      "schema:name": "Statement",
+      "schema:termCode": "00",
+      "rdfs:comment": "The atomic unit of the graph. An objective record of a Subject-Predicate-Object assertion.",
+      "schema:category": "Protocol",
+      "schema:disambiguatingDescription": "Not a verified fact; verification is application-level. Not what it represents.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"
+        }
+      ]
+    },
+    {
+      "@id": "fide:Person",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Person",
+      "schema:name": "Person",
+      "schema:termCode": "10",
+      "rdfs:comment": "A person (alive, dead, undead, or fictional).",
+      "schema:category": "Agents",
+      "schema:disambiguatingDescription": "Not an account or organization.",
+      "owl:equivalentClass": [
+        {
+          "@id": "https://schema.org/Person"
+        }
+      ]
+    },
+    {
+      "@id": "fide:Organization",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Organization",
+      "schema:name": "Organization",
+      "schema:termCode": "11",
+      "rdfs:comment": "A structured collective of people or agents that acts as a unit.",
+      "schema:category": "Agents",
+      "schema:disambiguatingDescription": "Not a single person or software. Not a query-defined group (e.g. alumni by year); create only when the group itself needs to act.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/ns/org#Organization"
+        }
+      ]
+    },
+    {
+      "@id": "fide:SoftwareAgent",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "SoftwareAgent",
+      "schema:name": "SoftwareAgent",
+      "schema:termCode": "12",
+      "rdfs:comment": "A running process that acts as an independent actor: bot, AI agent, smart contract. Can hold keys and sign.",
+      "schema:category": "Agents",
+      "schema:disambiguatingDescription": "Not a person or organization. Not static passive code (use CreativeWork for repos, images, logic).",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/SoftwareApplication"
+        },
+        {
+          "@id": "http://www.w3.org/ns/prov#SoftwareAgent"
+        }
+      ]
+    },
+    {
+      "@id": "fide:NetworkResource",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "NetworkResource",
+      "schema:name": "NetworkResource",
+      "schema:termCode": "20",
+      "rdfs:comment": "Identity primarily by addressability/resolution (URL, URI, CID, etc.), regardless of authorship. Retrieved/resolved as content or endpoint. A NetworkResource often represents or delivers a CreativeWork.",
+      "schema:category": "Network Anchors",
+      "schema:disambiguatingDescription": "Not a subset or account. Not an inhabitable spatial context (use Place).",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/WebPage"
+        },
+        {
+          "@id": "https://schema.org/WebSite"
+        },
+        {
+          "@id": "https://schema.org/EntryPoint"
+        }
+      ]
+    },
+    {
+      "@id": "fide:PlatformAccount",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "PlatformAccount",
+      "schema:name": "PlatformAccount",
+      "schema:termCode": "21",
+      "rdfs:comment": "An authority-based account principal (e.g., an email address or a specific GitHub, Google, or Mastodon user ID). The identity exists by the permission of a host system's database.",
+      "schema:category": "Network Anchors",
+      "schema:disambiguatingDescription": "Authenticated by a host authority's database, not purely by mathematics.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/OnlineAccount"
+        }
+      ]
+    },
+    {
+      "@id": "fide:CryptographicAccount",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "CryptographicAccount",
+      "schema:name": "CryptographicAccount",
+      "schema:termCode": "22",
+      "rdfs:comment": "A math-based account principal (e.g., an EVM address, Bitcoin wallet, or did:key). The identity exists mathematically and is authenticated via mathematical signature keys.",
+      "schema:category": "Network Anchors",
+      "schema:disambiguatingDescription": "Authenticated via mathematical signature keys, independent of a host authority.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://w3id.org/security#PublicKey"
+        },
+        {
+          "@id": "https://w3id.org/security#publicKeyMultibase"
+        }
+      ]
+    },
+    {
+      "@id": "fide:CreativeWork",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "CreativeWork",
+      "schema:name": "CreativeWork",
+      "schema:termCode": "30",
+      "rdfs:comment": "The most generic kind of creative work, including books, movies, photographs, software programs, etc. Non-expressive digital artifacts (binaries, model weights, dataset snapshots) are CreativeWork with refinement via Statements (artifactKind, mediaType, generatedBy, derivedFrom).",
+      "schema:category": "Knowledge",
+      "schema:disambiguatingDescription": "Not a raw value or formal concept. Not a running agent instance (use SoftwareAgent). Not a resource where location is primary identifier (use NetworkResource).",
+      "owl:equivalentClass": [
+        {
+          "@id": "https://schema.org/CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "fide:Concept",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Concept",
+      "schema:name": "Concept",
+      "schema:termCode": "31",
+      "rdfs:comment": "A formal concept, word, topic, category, or abstract idea defined in a taxonomy.",
+      "schema:category": "Knowledge",
+      "schema:disambiguatingDescription": "Not a plain raw value.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/DefinedTerm"
+        }
+      ]
+    },
+    {
+      "@id": "fide:Place",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Place",
+      "schema:name": "Place",
+      "schema:termCode": "40",
+      "rdfs:comment": "A spatial context that can contain presence, co-location, and interaction. Includes physical locations and persistent virtual environments (e.g., a concert venue, a Discord server or channel, a Zoom room, a VRChat instance). Physicality/virtuality is asserted via Statements, not the base type.",
+      "schema:category": "Spacetime",
+      "schema:disambiguatingDescription": "Not a happening or a physical artifact. Can an Actor have presence there? Is its identity a spatial address rather than a document location or account?",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/Place"
+        },
+        {
+          "@id": "https://schema.org/VirtualLocation"
+        }
+      ]
+    },
+    {
+      "@id": "fide:Event",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Event",
+      "schema:name": "Event",
+      "schema:termCode": "41",
+      "rdfs:comment": "An occurrence or happening bounded in time. Can be observed/aggregated; may be caused by Actions, systems, or nature. Occurs at a Place (physical or virtual).",
+      "schema:category": "Spacetime",
+      "schema:disambiguatingDescription": "Not a specific exertion of agency (Action).",
+      "owl:equivalentClass": [
+        {
+          "@id": "https://schema.org/Event"
+        }
+      ]
+    },
+    {
+      "@id": "fide:Action",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "Action",
+      "schema:name": "Action",
+      "schema:termCode": "42",
+      "rdfs:comment": "A discrete assertion or commitment attributable to an Agent. Often produces or records a change (e.g., a transaction, API call, signature). Can be linked to Events via Statements (causes, records, resultsIn).",
+      "schema:category": "Spacetime",
+      "schema:disambiguatingDescription": "Not a broad temporal happening (Event); must be driven by an Agent.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/Action"
+        },
+        {
+          "@id": "http://www.w3.org/ns/prov#Activity"
+        }
+      ]
+    },
+    {
+      "@id": "fide:PhysicalObject",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "PhysicalObject",
+      "schema:name": "PhysicalObject",
+      "schema:termCode": "43",
+      "rdfs:comment": "A tangible, inanimate physical object (e.g., hardware, vehicle, physical document, natural object). Physical only. Use Statements (madeBy, manufactured=true) if man-made vs natural matters.",
+      "schema:category": "Spacetime",
+      "schema:disambiguatingDescription": "Not a location (where). Not a digital artifact (use CreativeWork).",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/Product"
+        },
+        {
+          "@id": "https://schema.org/Thing"
+        }
+      ]
+    },
+    {
+      "@id": "fide:TextLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "TextLiteral",
+      "schema:name": "TextLiteral",
+      "schema:termCode": "a0",
+      "rdfs:comment": "A plain text sequence of characters.",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a Concept.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      ]
+    },
+    {
+      "@id": "fide:IntegerLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "IntegerLiteral",
+      "schema:name": "IntegerLiteral",
+      "schema:termCode": "a1",
+      "rdfs:comment": "A whole number.",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a decimal or string.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#integer"
+        }
+      ]
+    },
+    {
+      "@id": "fide:DecimalLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "DecimalLiteral",
+      "schema:name": "DecimalLiteral",
+      "schema:termCode": "a2",
+      "rdfs:comment": "A decimal or floating-point number.",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not an integer.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#decimal"
+        }
+      ]
+    },
+    {
+      "@id": "fide:BoolLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "BoolLiteral",
+      "schema:name": "BoolLiteral",
+      "schema:termCode": "a3",
+      "rdfs:comment": "A true or false value.",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a number or string.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
+      ]
+    },
+    {
+      "@id": "fide:DateLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "DateLiteral",
+      "schema:name": "DateLiteral",
+      "schema:termCode": "a4",
+      "rdfs:comment": "A calendar date (YYYY-MM-DD formatted according to ISO 8601).",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a datetime or time.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#date"
+        }
+      ]
+    },
+    {
+      "@id": "fide:TimeLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "TimeLiteral",
+      "schema:name": "TimeLiteral",
+      "schema:termCode": "a5",
+      "rdfs:comment": "A time of day (formatted according to ISO 8601, represented in UTC).",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a date or datetime.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#time"
+        }
+      ]
+    },
+    {
+      "@id": "fide:DateTimeLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "DateTimeLiteral",
+      "schema:name": "DateTimeLiteral",
+      "schema:termCode": "a6",
+      "rdfs:comment": "A specific point in time (ISO 8601 formatted, UTC normalized).",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a date or time alone.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+        }
+      ]
+    },
+    {
+      "@id": "fide:DurationLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "DurationLiteral",
+      "schema:name": "DurationLiteral",
+      "schema:termCode": "a7",
+      "rdfs:comment": "A calculated amount of elapsed time (ISO 8601 duration format).",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a datetime.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#duration"
+        }
+      ]
+    },
+    {
+      "@id": "fide:URILiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "URILiteral",
+      "schema:name": "URILiteral",
+      "schema:termCode": "a8",
+      "rdfs:comment": "A formalized Uniform Resource Identifier string (RFC 3986).",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not plain text.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+        }
+      ]
+    },
+    {
+      "@id": "fide:JSONLiteral",
+      "@type": "schema:DefinedTerm",
+      "rdfs:label": "JSONLiteral",
+      "schema:name": "JSONLiteral",
+      "schema:termCode": "a9",
+      "rdfs:comment": "A structured JSON object represented in canonical string form (RFC 8785).",
+      "schema:category": "Literals",
+      "schema:disambiguatingDescription": "Not a string.",
+      "owl:equivalentClass": [
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+        },
+        {
+          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+        }
+      ]
+    }
+  ]
+}
