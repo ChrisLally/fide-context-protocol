@@ -1,0 +1,33 @@
+---
+title: "buildStatement"
+description: "Build a statement object with all required fields.\n\nAlways computes Fide IDs from rawIdentifier + entityType + sourceType.\nPredicates must be canonical full URLs."
+---
+
+{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+
+Build a statement object with all required fields.
+
+Always computes Fide IDs from rawIdentifier + entityType + sourceType.
+Predicates must be canonical full URLs.
+
+## Signature
+
+```ts
+buildStatement(input: StatementInput, options: StatementBuildOptions | undefined): Promise<Statement>
+```
+
+Build a statement object with all required fields.
+
+Always computes Fide IDs from rawIdentifier + entityType + sourceType.
+Predicates must be canonical full URLs.
+
+#### Parameters
+
+| Name | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `input` | StatementInput | Yes | Statement input with subject, predicate, and object |
+| `options` | StatementBuildOptions \| undefined | Yes |   |
+
+#### Returns
+
+Complete statement object

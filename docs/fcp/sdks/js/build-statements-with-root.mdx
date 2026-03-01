@@ -1,0 +1,39 @@
+---
+title: "buildStatementsWithRoot"
+description: "Build a batch of statements and derive a deterministic batch root.\n\nRoot derivation:\n- `statementFideIds` are lexicographically sorted\n- Sorted IDs are joined with `\\n`\n- SHA-256 is computed over that byte sequence\n- Result is returned as lowercase hex string"
+---
+
+{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+
+Build a batch of statements and derive a deterministic batch root.
+
+Root derivation:
+- `statementFideIds` are lexicographically sorted
+- Sorted IDs are joined with `\n`
+- SHA-256 is computed over that byte sequence
+- Result is returned as lowercase hex string
+
+## Signature
+
+```ts
+buildStatementsWithRoot(inputs: StatementInput[], options: StatementBuildOptions | undefined): Promise<import("/Users/chrislally/Desktop/fide-internal/packages/fide-context-protocol/sdks/js/src/statement/types").CanonicalStatementSet>
+```
+
+Build a batch of statements and derive a deterministic batch root.
+
+Root derivation:
+- `statementFideIds` are lexicographically sorted
+- Sorted IDs are joined with `\n`
+- SHA-256 is computed over that byte sequence
+- Result is returned as lowercase hex string
+
+#### Parameters
+
+| Name | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `inputs` | StatementInput[] | Yes | Array of statement inputs. |
+| `options` | StatementBuildOptions \| undefined | Yes |   |
+
+#### Returns
+
+Statements, statement IDs (input order), and deterministic root hash

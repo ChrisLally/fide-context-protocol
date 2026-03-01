@@ -12,7 +12,7 @@ const SDK_ENTRY = resolve(SDK_ROOT, 'src/index.ts');
 const OUTPUT_DIR = resolve(FCP_ROOT, 'docs/fcp/sdks/js');
 const TSCONFIG_PATH = resolve(SDK_ROOT, 'tsconfig.json');
 
-const SECTION_ORDER = ['FIDE ID', 'Statement', 'Other'];
+const SECTION_ORDER = ['Fide ID', 'Statement', 'Other'];
 
 function toSlug(name) {
   return name
@@ -52,7 +52,7 @@ function parseNamedExports(source) {
 }
 
 function sectionFor(sourcePath) {
-  if (sourcePath.includes('/fide-id/')) return 'FIDE ID';
+  if (sourcePath.includes('/fide-id/')) return 'Fide ID';
   if (sourcePath.includes('/statement/')) return 'Statement';
   return 'Other';
 }
@@ -190,7 +190,11 @@ function buildFunctionPage(doc) {
           '| :--- | :--- | :--- | :--- |',
           ...sig.parameters.map((param) => {
             const desc = (param.description || ' ').replace(/\|/g, '\\|');
-            return `| \`${param.name}\` | \`${param.type}\` | ${param.optional ? 'No' : 'Yes'} | ${desc} |`;
+            const type = param.type
+              .replace(/\|/g, '\\|')
+              .replace(/\{/g, '\\{')
+              .replace(/\}/g, '\\}');
+            return `| \`${param.name}\` | ${type} | ${param.optional ? 'No' : 'Yes'} | ${desc} |`;
           }),
         ].join('\n');
 
@@ -207,7 +211,7 @@ title: ${yamlQuoted(doc.name)}
 description: ${yamlQuoted(intro)}
 ---
 
-<!-- AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. -->
+{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
 
 ${intro}
 
@@ -222,7 +226,7 @@ function buildIndexPage(grouped) {
     'description: "Complete API surface for @chris-test/fcp"',
     '---',
     '',
-    '<!-- AUTO-GENERATED. DO NOT EDIT DIRECTLY. -->',
+    '{/* AUTO-GENERATED. DO NOT EDIT DIRECTLY. */}',
     '',
   ];
 

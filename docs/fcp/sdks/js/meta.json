@@ -1,0 +1,23 @@
+{
+  "title": "SDKs",
+  "description": "FCP JavaScript SDK reference",
+  "root": true,
+  "pages": [
+    "index",
+    "--- Fide ID ---",
+    "assert-fide-id",
+    "build-fide-id-from-parts",
+    "build-statement-raw-identifier",
+    "calculate-fide-id",
+    "calculate-statement-fide-id",
+    "normalize-predicate-raw-identifier",
+    "normalize-raw-identifier",
+    "parse-fide-id",
+    "--- Statement ---",
+    "build-canonical-statement-set",
+    "build-statement",
+    "build-statements-with-root",
+    "calculate-canonical-statement-set-root",
+    "calculate-statement-set-root"
+  ]
+}

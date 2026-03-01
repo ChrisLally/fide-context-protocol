@@ -1,0 +1,35 @@
+---
+title: "calculateFideId"
+description: "Core primitive: calculate a Fide ID from type codes and raw identifier.\n\nDeterministic SHA-256 hash of the raw identifier (UTF-8), then constructs\n`did:fide:0x` + 2 hex (type) + 2 hex (source) + first 36 hex of hash = 40 hex total."
+---
+
+{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+
+Core primitive: calculate a Fide ID from type codes and raw identifier.
+
+Deterministic SHA-256 hash of the raw identifier (UTF-8), then constructs
+`did:fide:0x` + 2 hex (type) + 2 hex (source) + first 36 hex of hash = 40 hex total.
+
+## Signature
+
+```ts
+calculateFideId(entityType: "Statement" | "Person" | "Organization" | "SoftwareAgent" | "NetworkResource" | "PlatformAccount" | "CryptographicAccount" | "CreativeWork" | "Concept" | "Place" | "Event" | "Action" | "PhysicalObject" | "TextLiteral" | "IntegerLiteral" | "DecimalLiteral" | "BoolLiteral" | "DateLiteral" | "TimeLiteral" | "DateTimeLiteral" | "DurationLiteral" | "URILiteral" | "JSONLiteral", sourceEntityType: "Statement" | "Person" | "Organization" | "SoftwareAgent" | "NetworkResource" | "PlatformAccount" | "CryptographicAccount" | "CreativeWork" | "Concept" | "Place" | "Event" | "Action" | "PhysicalObject" | "TextLiteral" | "IntegerLiteral" | "DecimalLiteral" | "BoolLiteral" | "DateLiteral" | "TimeLiteral" | "DateTimeLiteral" | "DurationLiteral" | "URILiteral" | "JSONLiteral", rawIdentifier: string, options: FideIdCalculationOptions | undefined): Promise<`did:fide:0x${string}`>
+```
+
+Core primitive: calculate a Fide ID from type codes and raw identifier.
+
+Deterministic SHA-256 hash of the raw identifier (UTF-8), then constructs
+`did:fide:0x` + 2 hex (type) + 2 hex (source) + first 36 hex of hash = 40 hex total.
+
+#### Parameters
+
+| Name | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `entityType` | "Statement" \| "Person" \| "Organization" \| "SoftwareAgent" \| "NetworkResource" \| "PlatformAccount" \| "CryptographicAccount" \| "CreativeWork" \| "Concept" \| "Place" \| "Event" \| "Action" \| "PhysicalObject" \| "TextLiteral" \| "IntegerLiteral" \| "DecimalLiteral" \| "BoolLiteral" \| "DateLiteral" \| "TimeLiteral" \| "DateTimeLiteral" \| "DurationLiteral" \| "URILiteral" \| "JSONLiteral" | Yes | The entity type. |
+| `sourceEntityType` | "Statement" \| "Person" \| "Organization" \| "SoftwareAgent" \| "NetworkResource" \| "PlatformAccount" \| "CryptographicAccount" \| "CreativeWork" \| "Concept" \| "Place" \| "Event" \| "Action" \| "PhysicalObject" \| "TextLiteral" \| "IntegerLiteral" \| "DecimalLiteral" \| "BoolLiteral" \| "DateLiteral" \| "TimeLiteral" \| "DateTimeLiteral" \| "DurationLiteral" \| "URILiteral" \| "JSONLiteral" | Yes | The source entity type. |
+| `rawIdentifier` | string | Yes | The raw identifier string to hash (UTF-8 encoded). |
+| `options` | FideIdCalculationOptions \| undefined | Yes |   |
+
+#### Returns
+
+Promise resolving to the calculated Fide ID with format `did:fide:0x{typeCode}{sourceCode}{fingerprint}`

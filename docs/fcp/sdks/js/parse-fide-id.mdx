@@ -1,0 +1,32 @@
+---
+title: "parseFideId"
+description: "Parse a Fide ID into its constituent components.\n\nDecomposes a Fide ID into entity type code (2 hex), source type code (2 hex), and fingerprint (36 hex),\nconverting type/source codes to their corresponding entity type names."
+---
+
+{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+
+Parse a Fide ID into its constituent components.
+
+Decomposes a Fide ID into entity type code (2 hex), source type code (2 hex), and fingerprint (36 hex),
+converting type/source codes to their corresponding entity type names.
+
+## Signature
+
+```ts
+parseFideId(fideId: `did:fide:0x${string}`): ParsedFideId
+```
+
+Parse a Fide ID into its constituent components.
+
+Decomposes a Fide ID into entity type code (2 hex), source type code (2 hex), and fingerprint (36 hex),
+converting type/source codes to their corresponding entity type names.
+
+#### Parameters
+
+| Name | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `fideId` | `did:fide:0x$\{string\}` | Yes | The Fide ID reference (format: did:fide:0x...) |
+
+#### Returns
+
+Parsed Fide ID components. `entityType` and `sourceType` are resolved via `FIDE_CHAR_TO_ENTITY_TYPE`.
