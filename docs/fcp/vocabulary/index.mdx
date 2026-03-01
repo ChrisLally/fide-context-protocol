@@ -1,0 +1,78 @@
+---
+title: Fide Entity Vocabulary
+description: Explore the seven conceptual layers and entity types of the Fide Context Protocol.
+---
+
+### Protocol
+
+The atomic primitive layer that anchors graph assertions.
+
+| Entity | Code | Definition | Not |
+| :--- | :--- | :--- | :--- |
+| [`Statement`](/docs/fcp/vocabulary/statement) | `00` | The atomic unit of the graph. An objective record of a Subject-Predicate-Object assertion. | Not a verified fact; verification is application-level. Not what it represents. |
+
+### Agents
+
+Entities with agency - they make decisions, take actions, and bear responsibility.
+
+| Entity | Code | Definition | Not |
+| :--- | :--- | :--- | :--- |
+| [`Person`](/docs/fcp/vocabulary/person) | `10` | A person (alive, dead, undead, or fictional). | Not an account or organization. |
+| [`Organization`](/docs/fcp/vocabulary/organization) | `11` | A structured collective of people or agents that acts as a unit. | Not a single person or software. Not a query-defined group (e.g. alumni by year); create only when the group itself needs to act. |
+| [`SoftwareAgent`](/docs/fcp/vocabulary/software-agent) | `12` | A running process that acts as an independent actor: bot, AI agent, smart contract. Can hold keys and sign. | Not a person or organization. Not static passive code (use CreativeWork for repos, images, logic). |
+
+### Network Anchors
+
+Network addresses where evidence lives: resolvable locations, platform handles, and cryptographic principals.
+
+| Entity | Code | Definition | Not |
+| :--- | :--- | :--- | :--- |
+| [`NetworkResource`](/docs/fcp/vocabulary/network-resource) | `20` | Identity primarily by addressability/resolution (URL, URI, CID, etc.), regardless of authorship. Retrieved/resolved as content or endpoint. A NetworkResource often represents or delivers a CreativeWork. | Not a subset or account. Not an inhabitable spatial context (use Place). |
+| [`PlatformAccount`](/docs/fcp/vocabulary/platform-account) | `21` | An authority-based account principal (e.g., an email address or a specific GitHub, Google, or Mastodon user ID). The identity exists by the permission of a host system's database. | Authenticated by a host authority's database, not purely by mathematics. |
+| [`CryptographicAccount`](/docs/fcp/vocabulary/cryptographic-account) | `22` | A math-based account principal (e.g., an EVM address, Bitcoin wallet, or did:key). The identity exists mathematically and is authenticated via mathematical signature keys. | Authenticated via mathematical signature keys, independent of a host authority. |
+
+### Knowledge
+
+Things that represent intellectual property, abstract ideas, or data structures.
+
+| Entity | Code | Definition | Not |
+| :--- | :--- | :--- | :--- |
+| [`CreativeWork`](/docs/fcp/vocabulary/creative-work) | `30` | The most generic kind of creative work, including books, movies, photographs, software programs, etc. Non-expressive digital artifacts (binaries, model weights, dataset snapshots) are CreativeWork with refinement via Statements (artifactKind, mediaType, generatedBy, derivedFrom). | Not a raw value or formal concept. Not a running agent instance (use SoftwareAgent). Not a resource where location is primary identifier (use NetworkResource). |
+| [`Concept`](/docs/fcp/vocabulary/concept) | `31` | A formal concept, word, topic, category, or abstract idea defined in a taxonomy. | Not a plain raw value. |
+
+### Spacetime
+
+Entities bounded in time; optionally in physical or virtual space. Substrate-neutral Places, Events, Actions, and physical Objects.
+
+| Entity | Code | Definition | Not |
+| :--- | :--- | :--- | :--- |
+| [`Place`](/docs/fcp/vocabulary/place) | `40` | A spatial context that can contain presence, co-location, and interaction. Includes physical locations and persistent virtual environments (e.g., a concert venue, a Discord server or channel, a Zoom room, a VRChat instance). Physicality/virtuality is asserted via Statements, not the base type. | Not a happening or a physical artifact. Can an Actor have presence there? Is its identity a spatial address rather than a document location or account? |
+| [`Event`](/docs/fcp/vocabulary/event) | `41` | An occurrence or happening bounded in time. Can be observed/aggregated; may be caused by Actions, systems, or nature. Occurs at a Place (physical or virtual). | Not a specific exertion of agency (Action). |
+| [`Action`](/docs/fcp/vocabulary/action) | `42` | A discrete assertion or commitment attributable to an Agent. Often produces or records a change (e.g., a transaction, API call, signature). Can be linked to Events via Statements (causes, records, resultsIn). | Not a broad temporal happening (Event); must be driven by an Agent. |
+| [`PhysicalObject`](/docs/fcp/vocabulary/physical-object) | `43` | A tangible, inanimate physical object (e.g., hardware, vehicle, physical document, natural object). Physical only. Use Statements (madeBy, manufactured=true) if man-made vs natural matters. | Not a location (where). Not a digital artifact (use CreativeWork). |
+
+### Literals
+
+Typed scalar literals represented as first-class addressed values.
+
+| Entity | Code | Definition | Not |
+| :--- | :--- | :--- | :--- |
+| [`TextLiteral`](/docs/fcp/vocabulary/text-literal) | `a0` | A plain text sequence of characters. | Not a Concept. |
+| [`IntegerLiteral`](/docs/fcp/vocabulary/integer-literal) | `a1` | A whole number. | Not a decimal or string. |
+| [`DecimalLiteral`](/docs/fcp/vocabulary/decimal-literal) | `a2` | A decimal or floating-point number. | Not an integer. |
+| [`BoolLiteral`](/docs/fcp/vocabulary/bool-literal) | `a3` | A true or false value. | Not a number or string. |
+| [`DateLiteral`](/docs/fcp/vocabulary/date-literal) | `a4` | A calendar date (YYYY-MM-DD formatted according to ISO 8601). | Not a datetime or time. |
+| [`TimeLiteral`](/docs/fcp/vocabulary/time-literal) | `a5` | A time of day (formatted according to ISO 8601, represented in UTC). | Not a date or datetime. |
+| [`DateTimeLiteral`](/docs/fcp/vocabulary/date-time-literal) | `a6` | A specific point in time (ISO 8601 formatted, UTC normalized). | Not a date or time alone. |
+| [`DurationLiteral`](/docs/fcp/vocabulary/duration-literal) | `a7` | A calculated amount of elapsed time (ISO 8601 duration format). | Not a datetime. |
+| [`URILiteral`](/docs/fcp/vocabulary/uri-literal) | `a8` | A formalized Uniform Resource Identifier string (RFC 3986). | Not plain text. |
+| [`JSONLiteral`](/docs/fcp/vocabulary/json-literal) | `a9` | A structured JSON object represented in canonical string form (RFC 8785). | Not a string. |
+
+
+---
+
+> **Immutable Base Types**
+>
+> Entity types are mathematically hardcoded into the `did:fide` identifier. Therefore, **FCP only defines fundamental entity types that will never change.**
+>
+> Subjective or transient categorizations (like "Product", "License", or "Policy") are asserted dynamically in the graph via `Statements`. When in doubt, default to the most objective, immutable base form.

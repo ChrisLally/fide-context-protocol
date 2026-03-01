@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fide.work/fcp/spec/v1/entity-types.schema.json",
+  "title": "FCP Entity Types v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocolId", "protocolGeneration", "specDate", "entityTypes"],
+  "properties": {
+    "protocolId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protocolGeneration": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "specDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "entityTypes": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9]*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code", "layer", "standards", "standardFit", "description", "litmus"],
+          "properties": {
+            "code": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{2}$"
+            },
+            "layer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "standards": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "standardFit": {
+              "type": "string",
+              "enum": ["Exact", "Close", "Broad"]
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "litmus": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}
