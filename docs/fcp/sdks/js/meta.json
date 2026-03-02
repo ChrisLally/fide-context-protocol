@@ -1,12 +1,12 @@
 {
-  "title": "SDKs",
+  "title": "SDK",
   "description": "Generated SDK reference",
   "root": true,
   "defaultOpen": false,
   "icon": "Box",
   "pages": [
     "index",
-    "--- Fide Id ---",
+    "--- Fide ID ---",
     "assert-fide-id",
     "build-fide-id-from-parts",
     "build-statement-raw-identifier",
