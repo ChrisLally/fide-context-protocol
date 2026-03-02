@@ -11,7 +11,7 @@ import type { StatementRawIdentifier } from "../types.js";
  * @param predicateFideId Predicate Fide ID.
  * @param objectFideId Object Fide ID.
  * @paramDefault subjectFideId did:fide:0x10205fcbdc6d73bcfcd2c73eb4795c2f02f1d1c1
- * @paramDefault predicateFideId did:fide:0x9020d57fbe3e4dbb06b9122faa66e3d57d2f4069
+ * @paramDefault predicateFideId did:fide:0x312047e49369039d57063d0535a246065fbf9c9e
  * @paramDefault objectFideId did:fide:0x1020f200f70f531f0f9cce26e9f4bf0bfa5f15d6
  * @returns Canonical statement raw identifier in `subject|predicate|object` format.
  */
