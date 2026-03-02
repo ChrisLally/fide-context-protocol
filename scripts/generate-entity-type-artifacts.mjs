@@ -8,7 +8,7 @@ import { loadValidatedEntityTypeSpec } from './lib/entity-types-spec.mjs';
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const FCP_ROOT = resolve(SCRIPT_DIR, '..');
 const SDK_CONSTANTS_PATH = resolve(FCP_ROOT, 'sdks/js/src/fide-id/constants.ts');
-const VOCAB_DIR = resolve(FCP_ROOT, 'docs/fcp/vocabulary');
+const VOCAB_DIR = resolve(FCP_ROOT, 'docs/vocabulary');
 
 const LAYER_ORDER = ['Protocol', 'Agents', 'Network Anchors', 'Knowledge', 'Spacetime', 'Literals', 'Unknown'];
 

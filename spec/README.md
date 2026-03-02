@@ -8,7 +8,7 @@ Canonical protocol data lives under versioned folders:
 Generated artifacts derived from `spec/v1/entity-types.json`:
 
 - `../sdks/js/src/fide-id/constants.ts`
-- `../docs/fcp/vocabulary/*`
+- `../docs/vocabulary/*`
 
 From repo root:
 
