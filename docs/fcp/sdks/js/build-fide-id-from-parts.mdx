@@ -1,28 +1,13 @@
 ---
 title: "buildFideIdFromParts"
-description: "SDK reference for buildFideIdFromParts."
+description: "Build a Fide ID from type code, source code, and fingerprint (no hashing).
+
+Use when you already have the fingerprint (e.g. from a database) and need to
+reconstruct the full Fide ID. For computing a new Fide ID from a raw identifier,
+use `calculateFideId` instead."
+full: true
 ---
 
-{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
 
-SDK reference for buildFideIdFromParts.
-
-## Signature
-
-```ts
-buildFideIdFromParts(typeChar: string, sourceChar: string, fingerprint: string): `did:fide:0x${string}`
-```
-
-
-
-#### Parameters
-
-| Name | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `typeChar` | string | Yes |   |
-| `sourceChar` | string | Yes |   |
-| `fingerprint` | string | Yes |   |
-
-#### Returns
-
-Return value described by the TypeScript signature.
+<SDKFunctionPageInteractive data={{"name":"buildFideIdFromParts","description":"Build a Fide ID from type code, source code, and fingerprint (no hashing).\n\nUse when you already have the fingerprint (e.g. from a database) and need to\nreconstruct the full Fide ID. For computing a new Fide ID from a raw identifier,\nuse `calculateFideId` instead.","section":"Fide Id","signatures":[{"description":"Build a Fide ID from type code, source code, and fingerprint (no hashing).\n\nUse when you already have the fingerprint (e.g. from a database) and need to\nreconstruct the full Fide ID. For computing a new Fide ID from a raw identifier,\nuse `calculateFideId` instead.","parameters":[{"name":"typeChar","type":"string","optional":false,"description":"Entity type code (2 hex chars, e.g. \"10\" for Person).","example":"10"},{"name":"sourceChar","type":"string","optional":false,"description":"Source type code (2 hex chars, e.g. \"20\" for NetworkResource).","example":"20"},{"name":"fingerprint","type":"string","optional":false,"description":"Content hash fingerprint (36 hex chars).","example":"5fcbdc6d73bcfcd2c73eb4795c2f02f1d1c1"}],"returnType":"FideId","returnDescription":"The constructed Fide ID: `did:fide:0x{typeChar}{sourceChar}{fingerprint}`","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"FideId","description":"Full Fide ID format (with did:fide:0x prefix).\nLength: 11 (\"did:fide:0x\") + 40 hex = 51 chars.","type":"`did:fide:0x${string}`"}]}],"constants":[],"referencedTypes":[{"name":"FideId","description":"Full Fide ID format (with did:fide:0x prefix).\nLength: 11 (\"did:fide:0x\") + 40 hex = 51 chars.","type":"`did:fide:0x${string}`"}]}} />

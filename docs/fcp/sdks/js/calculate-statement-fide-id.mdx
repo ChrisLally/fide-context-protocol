@@ -1,29 +1,13 @@
 ---
 title: "calculateStatementFideId"
-description: "SDK reference for calculateStatementFideId."
+description: "Calculate a Fide ID for a Statement from its RDF triple components.
+
+Creates a statement Fide ID by hashing the raw identifier: concatenation of
+subject, predicate, and object Fide IDs in that order, separated by ASCII `|`.
+No whitespace. This helper always returns the self-sourced Statement form (Target/Source = `0000`)."
+full: true
 ---
 
-{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
 
-SDK reference for calculateStatementFideId.
-
-## Signature
-
-```ts
-calculateStatementFideId(subjectFideId: string, predicateFideId: string, objectFideId: string, options: FideIdCalculationOptions | undefined): Promise<`did:fide:0x${string}`>
-```
-
-
-
-#### Parameters
-
-| Name | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `subjectFideId` | string | Yes |   |
-| `predicateFideId` | string | Yes |   |
-| `objectFideId` | string | Yes |   |
-| `options` | FideIdCalculationOptions \| undefined | Yes |   |
-
-#### Returns
-
-Return value described by the TypeScript signature.
+<SDKFunctionPageInteractive data={{"name":"calculateStatementFideId","description":"Calculate a Fide ID for a Statement from its RDF triple components.\n\nCreates a statement Fide ID by hashing the raw identifier: concatenation of\nsubject, predicate, and object Fide IDs in that order, separated by ASCII `|`.\nNo whitespace. This helper always returns the self-sourced Statement form (Target/Source = `0000`).","section":"Fide Id","signatures":[{"description":"Calculate a Fide ID for a Statement from its RDF triple components.\n\nCreates a statement Fide ID by hashing the raw identifier: concatenation of\nsubject, predicate, and object Fide IDs in that order, separated by ASCII `|`.\nNo whitespace. This helper always returns the self-sourced Statement form (Target/Source = `0000`).","parameters":[{"name":"subjectFideId","type":"string","optional":false,"description":"The subject Fide ID (full format: `did:fide:0x` + 40 hex chars).","example":"did:fide:0x10205fcbdc6d73bcfcd2c73eb4795c2f02f1d1c1"},{"name":"predicateFideId","type":"string","optional":false,"description":"The predicate Fide ID (full format: `did:fide:0x` + 40 hex chars).","example":"did:fide:0x9020d57fbe3e4dbb06b9122faa66e3d57d2f4069"},{"name":"objectFideId","type":"string","optional":false,"description":"The object Fide ID (full format: `did:fide:0x` + 40 hex chars).","example":"did:fide:0x1020f200f70f531f0f9cce26e9f4bf0bfa5f15d6"},{"name":"options","type":"FideIdCalculationOptions","optional":true,"description":"","example":"{ normalizeRawIdentifier: false }"}],"returnType":"Promise<`did:fide:0x${string}`>","returnDescription":"Promise resolving to the calculated statement Fide ID with format `did:fide:0x0000{fingerprint}`","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"FideIdCalculationOptions","description":"Options for Fide ID calculation helpers.\n\nReserved for forward-compatible toggles without changing function signatures.","type":"FideIdCalculationOptions","entries":{"normalizeRawIdentifier":{"description":"If true, normalize rawIdentifier before policy checks and hashing.\nUses `normalizeRawIdentifier`, primarily canonicalizing http(s) URLs.\nDefault is false.","type":"boolean","required":false},"dangerouslySkipSourceTypePolicy":{"description":"If true, skip source-type policy enforcement in calculateFideId.\nDefault is false (policy enforced).","type":"boolean","required":false},"dangerouslySkipRawIdentifierPolicy":{"description":"If true, skip rawIdentifier policy enforcement in calculateFideId.\nDefault is false (policy enforced).","type":"boolean","required":false}}}]}],"constants":[{"name":"Statement","description":"Complete statement object with all required fields\n\n**Important**: Both Fide IDs and raw identifiers are required because:\n- Fide IDs are one-way hashes - cannot be reversed to get raw identifiers\n- Protocol specification requires both fields\n- Indexers need raw identifiers for lookup tables and human-readable display\n- Enables mapping back to human-readable identifiers for debugging and display","typeText":"any"}],"referencedTypes":[{"name":"FideIdCalculationOptions","description":"Options for Fide ID calculation helpers.\n\nReserved for forward-compatible toggles without changing function signatures.","type":"FideIdCalculationOptions","entries":{"normalizeRawIdentifier":{"description":"If true, normalize rawIdentifier before policy checks and hashing.\nUses `normalizeRawIdentifier`, primarily canonicalizing http(s) URLs.\nDefault is false.","type":"boolean","required":false},"dangerouslySkipSourceTypePolicy":{"description":"If true, skip source-type policy enforcement in calculateFideId.\nDefault is false (policy enforced).","type":"boolean","required":false},"dangerouslySkipRawIdentifierPolicy":{"description":"If true, skip rawIdentifier policy enforcement in calculateFideId.\nDefault is false (policy enforced).","type":"boolean","required":false}}}]}} />

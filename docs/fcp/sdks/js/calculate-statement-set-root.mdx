@@ -1,26 +1,9 @@
 ---
 title: "calculateStatementSetRoot"
-description: "SDK reference for calculateStatementSetRoot."
+description: "Backward-compatible alias for `calculateCanonicalStatementSetRoot`."
+full: true
 ---
 
-{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
 
-SDK reference for calculateStatementSetRoot.
-
-## Signature
-
-```ts
-calculateStatementSetRoot(statementFideIds: `did:fide:0x${string}`[]): Promise<string>
-```
-
-Protocol-level deterministic root for a canonical statement set.
-
-#### Parameters
-
-| Name | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `statementFideIds` | `did:fide:0x$\{string\}`[] | Yes |   |
-
-#### Returns
-
-Return value described by the TypeScript signature.
+<SDKFunctionPageInteractive data={{"name":"calculateStatementSetRoot","description":"Backward-compatible alias for `calculateCanonicalStatementSetRoot`.","section":"Statement","signatures":[{"description":"Backward-compatible alias for `calculateCanonicalStatementSetRoot`.","parameters":[{"name":"statementFideIds","type":"FideId[]","optional":false,"description":"Statement Fide IDs in any order.","example":"[\\\"did:fide:0x0000fe0fcf95627f2769f309f672ff7ff0ca0f44\\\", \\\"did:fide:0x00006fd990f48ec1ec4f4e0fb4ef80f238f78339\\\"]"}],"returnType":"Promise<string>","returnDescription":"Deterministic SHA-256 root hash for the canonicalized set.","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"FideId","description":"Full Fide ID format (with did:fide:0x prefix).\nLength: 11 (\"did:fide:0x\") + 40 hex = 51 chars.","type":"`did:fide:0x${string}`"}]}],"constants":[{"name":"Statement","description":"Complete statement object with all required fields\n\n**Important**: Both Fide IDs and raw identifiers are required because:\n- Fide IDs are one-way hashes - cannot be reversed to get raw identifiers\n- Protocol specification requires both fields\n- Indexers need raw identifiers for lookup tables and human-readable display\n- Enables mapping back to human-readable identifiers for debugging and display","typeText":"any"}],"referencedTypes":[{"name":"FideId","description":"Full Fide ID format (with did:fide:0x prefix).\nLength: 11 (\"did:fide:0x\") + 40 hex = 51 chars.","type":"`did:fide:0x${string}`"}]}} />

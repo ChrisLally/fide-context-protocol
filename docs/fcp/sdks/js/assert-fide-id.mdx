@@ -1,32 +1,12 @@
 ---
 title: "assertFideId"
-description: "Assert that a value is a properly formatted Fide ID.\n\nValid format is:\n`did:fide:0x` prefix followed by exactly 40 hexadecimal characters (case-insensitive)."
+description: "Assert that a value is a properly formatted Fide ID.
+
+Valid format is:
+`did:fide:0x` prefix followed by exactly 40 hexadecimal characters (case-insensitive)."
+full: true
 ---
 
-{/* AUTO-GENERATED FROM sdks/js/src/index.ts. DO NOT EDIT DIRECTLY. */}
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
 
-Assert that a value is a properly formatted Fide ID.
-
-Valid format is:
-`did:fide:0x` prefix followed by exactly 40 hexadecimal characters (case-insensitive).
-
-## Signature
-
-```ts
-assertFideId(value: string): void
-```
-
-Assert that a value is a properly formatted Fide ID.
-
-Valid format is:
-`did:fide:0x` prefix followed by exactly 40 hexadecimal characters (case-insensitive).
-
-#### Parameters
-
-| Name | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `value` | string | Yes | The Fide ID reference (format: did:fide:0x...) |
-
-#### Returns
-
-void
+<SDKFunctionPageInteractive data={{"name":"assertFideId","description":"Assert that a value is a properly formatted Fide ID.\n\nValid format is:\n`did:fide:0x` prefix followed by exactly 40 hexadecimal characters (case-insensitive).","section":"Fide Id","signatures":[{"description":"Assert that a value is a properly formatted Fide ID.\n\nValid format is:\n`did:fide:0x` prefix followed by exactly 40 hexadecimal characters (case-insensitive).","parameters":[{"name":"value","type":"string","optional":false,"description":"The Fide ID reference (format: did:fide:0x...)","example":"did:fide:0x10205fcbdc6d73bcfcd2c73eb4795c2f02f1d1c1"}],"returnType":"asserts value is FideId","returnDescription":"void","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"FideId","description":"Full Fide ID format (with did:fide:0x prefix).\nLength: 11 (\"did:fide:0x\") + 40 hex = 51 chars.","type":"`did:fide:0x${string}`"}]}],"constants":[],"referencedTypes":[{"name":"FideId","description":"Full Fide ID format (with did:fide:0x prefix).\nLength: 11 (\"did:fide:0x\") + 40 hex = 51 chars.","type":"`did:fide:0x${string}`"}]}} />

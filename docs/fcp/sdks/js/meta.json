@@ -1,10 +1,12 @@
 {
-  "title": "SDK",
-  "description": "FCP JavaScript SDK reference",
+  "title": "SDKs",
+  "description": "Generated SDK reference",
   "root": true,
+  "defaultOpen": false,
+  "icon": "Box",
   "pages": [
     "index",
-    "--- Fide ID ---",
+    "--- Fide Id ---",
     "assert-fide-id",
     "build-fide-id-from-parts",
     "build-statement-raw-identifier",
