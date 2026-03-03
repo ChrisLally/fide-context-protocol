@@ -6,7 +6,7 @@
   "icon": "Box",
   "pages": [
     "index",
-    "--- Fide ---",
+    "--- Fide ID ---",
     "assert-fide-id",
     "build-fide-id-from-parts",
     "build-statement-raw-identifier",
