@@ -26,6 +26,28 @@ Implementation-specific product behavior should stay outside FCP scope.
 - Keep protocol strict by default; make convenience behavior explicit opt-in.
 - Avoid breaking existing protocol contracts unless intentionally versioned.
 
+## Opt-In Option Pattern
+
+When adding convenience behavior, keep defaults strict and expose explicit options on function signatures.
+
+Examples:
+
+```ts
+normalizePredicateRawIdentifier(rawIdentifier, {
+  expandPrefixes: true,
+});
+
+calculateFideId(entityType, sourceType, rawIdentifier, {
+  normalizeRawIdentifier: true,
+});
+```
+
+Naming guidance:
+
+- use positive, explicit opt-in flags for convenience behavior (`expandPrefixes`, `normalizeRawIdentifier`)
+- reserve `dangerously*` flags for policy bypasses only
+- document default values and behavior in JSDoc and docs pages
+
 ## Local Workflow
 
 From repository root:
