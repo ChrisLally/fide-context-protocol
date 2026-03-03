@@ -4,13 +4,14 @@
   "title": "FCP Entity Types v1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["protocolId", "protocolGeneration", "specDate", "entityTypes"],
+  "required": ["namespaceUrl", "specVersion", "specDate", "entityTypes"],
   "properties": {
-    "protocolId": {
+    "namespaceUrl": {
       "type": "string",
+      "format": "uri",
       "minLength": 1
     },
-    "protocolGeneration": {
+    "specVersion": {
       "type": "string",
       "pattern": "^[0-9]+$"
     },

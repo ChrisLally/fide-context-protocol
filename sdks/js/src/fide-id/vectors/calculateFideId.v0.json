@@ -1,6 +1,6 @@
 {
-  "protocolId": "FCP",
-  "protocolGeneration": "1",
+  "namespaceUrl": "https://fide.work/spec/v1/",
+  "specVersion": "1",
   "specDate": "2026-02-18",
   "vectorSetVersion": "1",
   "version": "v1",

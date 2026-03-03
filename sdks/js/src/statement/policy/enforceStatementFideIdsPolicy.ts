@@ -3,6 +3,12 @@
  */
 import { assertFideId, parseFideId } from "../../fide-id/index.js";
 
+/**
+ * Enforce role-specific ID policy on a derived Fide ID.
+ *
+ * Subject/object IDs cannot use Statement source (`00`) unless the entity
+ * itself is Statement.
+ */
 function assertRoleFideIdPolicy(fideId: string, role: "subject" | "object"): void {
   assertFideId(fideId);
   const { typeChar, sourceChar } = parseFideId(fideId);
@@ -18,13 +24,17 @@ function assertRoleFideIdPolicy(fideId: string, role: "subject" | "object"): voi
   );
 }
 
+/**
+ * Enforce post-derivation statement ID invariants.
+ *
+ * Predicate ID policy is enforced earlier through input constraints; this
+ * function keeps subject/object Statement-source restrictions centralized.
+ */
 export function enforceStatementFideIdsPolicy(
   subjectFideId: string,
   predicateFideId: string,
   objectFideId: string
 ): void {
-  // Predicate combo policy is enforced at input level (entityType/sourceType).
-  // Keep ID-level checks here for subject/object Statement-source restrictions.
   assertRoleFideIdPolicy(subjectFideId, "subject");
   assertRoleFideIdPolicy(objectFideId, "object");
 }

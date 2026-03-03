@@ -3,6 +3,12 @@
  */
 export { buildStatement } from "./functions/buildStatement.js";
 export {
+  enforceStatementPredicateInputPolicy,
+} from "./policy/enforceStatementPredicateInputPolicy.js";
+export {
+  enforceStatementPredicateBatchPolicy,
+} from "./policy/enforceStatementPredicateBatchPolicy.js";
+export {
   calculateCanonicalStatementSetRoot,
   calculateStatementSetRoot,
 } from "./functions/calculateCanonicalStatementSetRoot.js";

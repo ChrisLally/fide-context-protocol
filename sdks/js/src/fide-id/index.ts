@@ -24,8 +24,8 @@ export { parseFideId } from "./functions/parseFideId.js";
 
 // Constants
 export {
-    FCP_PROTOCOL_ID,
-    FCP_PROTOCOL_GENERATION,
+    FCP_NAMESPACE_URL,
+    FCP_SPEC_VERSION,
     FCP_SPEC_DATE,
     FIDE_ENTITY_TYPE_MAP,
     FIDE_CHAR_TO_ENTITY_TYPE,

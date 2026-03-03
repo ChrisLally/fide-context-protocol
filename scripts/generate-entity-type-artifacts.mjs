@@ -8,6 +8,7 @@ import { loadValidatedEntityTypeSpec } from './lib/entity-types-spec.mjs';
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const FCP_ROOT = resolve(SCRIPT_DIR, '..');
 const SDK_CONSTANTS_PATH = resolve(FCP_ROOT, 'sdks/js/src/fide-id/constants.ts');
+const SDK_SPEC_MODULE_PATH = resolve(FCP_ROOT, 'sdks/js/src/spec/index.ts');
 const VOCAB_DIR = resolve(FCP_ROOT, 'docs/vocabulary');
 
 const LAYER_ORDER = ['Protocol', 'Agents', 'Network Anchors', 'Knowledge', 'Spacetime', 'Literals', 'Unknown'];
@@ -48,8 +49,8 @@ function escapeMdx(text) {
 }
 
 function normalizeSpec(raw) {
-  const protocolId = ensureString(raw.protocolId, 'protocolId');
-  const protocolGeneration = ensureString(raw.protocolGeneration, 'protocolGeneration');
+  const namespaceUrl = ensureString(raw.namespaceUrl, 'namespaceUrl');
+  const specVersion = ensureString(raw.specVersion, 'specVersion');
   const specDate = ensureString(raw.specDate, 'specDate');
 
   if (!raw.entityTypes || typeof raw.entityTypes !== 'object') {
@@ -75,7 +76,7 @@ function normalizeSpec(raw) {
     };
   });
 
-  return { protocolId, protocolGeneration, specDate, entities };
+  return { namespaceUrl, specVersion, specDate, entities };
 }
 
 function generateConstantsTs(spec) {
@@ -91,8 +92,8 @@ function generateConstantsTs(spec) {
  * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json.
  * DO NOT EDIT DIRECTLY. RUN: pnpm run generate:fcp
  */
-export const FCP_PROTOCOL_ID = ${quote(spec.protocolId)} as const;
-export const FCP_PROTOCOL_GENERATION = ${quote(spec.protocolGeneration)} as const;
+export const FCP_NAMESPACE_URL = ${quote(spec.namespaceUrl)} as const;
+export const FCP_SPEC_VERSION = ${quote(spec.specVersion)} as const;
 export const FCP_SPEC_DATE = ${quote(spec.specDate)} as const;
 
 export const FIDE_ENTITY_TYPE_MAP = {
@@ -107,6 +108,45 @@ export const FIDE_ID_PREFIX = 'did:fide:0x' as const;
 export const FIDE_ID_HEX_LENGTH = 40;
 export const FIDE_ID_LENGTH = FIDE_ID_PREFIX.length + FIDE_ID_HEX_LENGTH;
 export const FIDE_ID_FINGERPRINT_LENGTH = 36;
+`;
+}
+
+function generateSpecModuleTs(spec) {
+  const entityEntries = spec.entities
+    .map((entity) => {
+      const standards = entity.standards.map((standard) => quote(standard)).join(', ');
+      return `  ${entity.name}: {
+    code: ${quote(entity.code)},
+    layer: ${quote(entity.layer)},
+    standards: [${standards}] as const,
+    standardFit: ${quote(entity.standardFit)},
+    description: ${quote(entity.description)},
+    litmus: ${quote(entity.litmus)},
+  },`;
+    })
+    .join('\n');
+
+  return `/**
+ * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json.
+ * DO NOT EDIT DIRECTLY. RUN: pnpm run generate:fcp
+ */
+export const FCP_SPEC = {
+  namespaceUrl: ${quote(spec.namespaceUrl)},
+  specVersion: ${quote(spec.specVersion)},
+  specDate: ${quote(spec.specDate)},
+  entityTypes: {
+${entityEntries}
+  },
+} as const;
+
+export const FCP_ENTITY_TYPES = FCP_SPEC.entityTypes;
+export type FcpEntityTypeName = keyof typeof FCP_ENTITY_TYPES;
+export type FcpStandardFit = (typeof FCP_ENTITY_TYPES)[FcpEntityTypeName]["standardFit"];
+export type FcpEntityTypeSpec = (typeof FCP_ENTITY_TYPES)[FcpEntityTypeName];
+
+export function getFcpEntityTypeSpec(name: FcpEntityTypeName): FcpEntityTypeSpec {
+  return FCP_ENTITY_TYPES[name];
+}
 `;
 }
 
@@ -231,7 +271,9 @@ async function main() {
   const rawSpec = await loadValidatedEntityTypeSpec(FCP_ROOT);
   const spec = normalizeSpec(rawSpec);
 
+  await mkdir(dirname(SDK_SPEC_MODULE_PATH), { recursive: true });
   await writeFile(SDK_CONSTANTS_PATH, generateConstantsTs(spec), 'utf8');
+  await writeFile(SDK_SPEC_MODULE_PATH, generateSpecModuleTs(spec), 'utf8');
   await writeVocabulary(spec);
 
   console.log(`Generated constants + vocabulary for ${spec.entities.length} entity types.`);

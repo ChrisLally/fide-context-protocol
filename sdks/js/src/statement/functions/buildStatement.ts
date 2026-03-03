@@ -6,6 +6,7 @@ import {
 } from "../../fide-id/functions/normalizeRawIdentifier.js";
 import { enforceStatementFideIdsPolicy } from "../policy/enforceStatementFideIdsPolicy.js";
 import { enforceStatementInputPolicy } from "../policy/enforceStatementInputPolicy.js";
+import { enforceStatementPredicateInputPolicy } from "../policy/enforceStatementPredicateInputPolicy.js";
 import type { Statement, StatementBuildOptions, StatementInput } from "../types.js";
 
 /**
@@ -25,6 +26,7 @@ export async function buildStatement(
   options?: StatementBuildOptions,
 ): Promise<Statement> {
   enforceStatementInputPolicy(input);
+  enforceStatementPredicateInputPolicy(input);
   const shouldNormalizeRawIdentifier = options?.normalizeRawIdentifier === true;
   const subjectRawIdentifier = shouldNormalizeRawIdentifier
     ? normalizeRawIdentifier(input.subject.rawIdentifier)

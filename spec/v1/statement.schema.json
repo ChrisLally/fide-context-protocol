@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fide.work/fcp/spec/v1/statement.schema.json",
+  "title": "FCP Statement v1",
+  "description": "Canonical statement object for Fide Context Protocol v1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "subjectFideId",
+    "subjectRawIdentifier",
+    "predicateFideId",
+    "predicateRawIdentifier",
+    "objectFideId",
+    "objectRawIdentifier"
+  ],
+  "properties": {
+    "subjectFideId": {
+      "$ref": "#/$defs/fideId"
+    },
+    "subjectRawIdentifier": {
+      "$ref": "#/$defs/rawIdentifier"
+    },
+    "predicateFideId": {
+      "$ref": "#/$defs/fideId"
+    },
+    "predicateRawIdentifier": {
+      "$ref": "#/$defs/rawIdentifier"
+    },
+    "objectFideId": {
+      "$ref": "#/$defs/fideId"
+    },
+    "objectRawIdentifier": {
+      "$ref": "#/$defs/rawIdentifier"
+    },
+    "statementFideId": {
+      "$ref": "#/$defs/fideId"
+    }
+  },
+  "$defs": {
+    "fideId": {
+      "type": "string",
+      "pattern": "^did:fide:0x[0-9a-fA-F]{40}$"
+    },
+    "rawIdentifier": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

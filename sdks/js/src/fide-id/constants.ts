@@ -2,8 +2,8 @@
  * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json.
  * DO NOT EDIT DIRECTLY. RUN: pnpm run generate:fcp
  */
-export const FCP_PROTOCOL_ID = "FCP" as const;
-export const FCP_PROTOCOL_GENERATION = "1" as const;
+export const FCP_NAMESPACE_URL = "https://fide.work/spec/v1/" as const;
+export const FCP_SPEC_VERSION = "1" as const;
 export const FCP_SPEC_DATE = "2026-02-18" as const;
 
 export const FIDE_ENTITY_TYPE_MAP = {

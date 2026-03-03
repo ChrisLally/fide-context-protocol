@@ -28,8 +28,8 @@ export {
 
 // Constants
 export {
-    FCP_PROTOCOL_ID,
-    FCP_PROTOCOL_GENERATION,
+    FCP_NAMESPACE_URL,
+    FCP_SPEC_VERSION,
     FCP_SPEC_DATE,
     DEFAULT_PREDICATE_PREFIXES,
     FIDE_ENTITY_TYPE_MAP,
@@ -61,9 +61,24 @@ export type {
 
 export {
     buildStatement,
+    enforceStatementPredicateInputPolicy,
+    enforceStatementPredicateBatchPolicy,
     calculateCanonicalStatementSetRoot,
     calculateStatementSetRoot,
     type StatementInput,
     type Statement,
     type CanonicalStatementSet
 } from "./statement/index.js";
+
+// ============================================================================
+// SPEC MODULE
+// ============================================================================
+
+export {
+    FCP_SPEC,
+    FCP_ENTITY_TYPES,
+    getFcpEntityTypeSpec,
+    type FcpEntityTypeName,
+    type FcpEntityTypeSpec,
+    type FcpStandardFit,
+} from "./spec/index.js";

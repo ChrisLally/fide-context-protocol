@@ -7,6 +7,9 @@ import { describeValue } from "../utils.js";
 type StatementRole = "subject" | "predicate" | "object";
 type StatementField = "rawIdentifier" | "entityType" | "sourceType";
 
+/**
+ * Assert that a statement role field (`subject`, `predicate`, `object`) is an object.
+ */
 function assertRoleObject(
   input: StatementInput | Record<string, unknown>,
   role: StatementRole,
@@ -20,6 +23,9 @@ function assertRoleObject(
   );
 }
 
+/**
+ * Assert that a role subfield is present and is a string.
+ */
 function assertRoleFieldString(
   input: StatementInput | Record<string, unknown>,
   role: StatementRole,
@@ -37,6 +43,17 @@ function assertRoleFieldString(
   );
 }
 
+/**
+ * Enforce basic statement input invariants before ID derivation.
+ *
+ * Validates:
+ * - object shape for `subject`, `predicate`, and `object`
+ * - string-typed `rawIdentifier`, `entityType`, `sourceType` fields
+ * - protocol-level predicate type constraints (`Concept` + `NetworkResource`)
+ *
+ * Predicate URL validity/canonicalization is enforced later by
+ * `normalizePredicateRawIdentifier()` in the statement build path.
+ */
 export function enforceStatementInputPolicy(input: StatementInput): void {
   if (!input || typeof input !== "object") {
     throw new Error(
@@ -65,7 +82,4 @@ export function enforceStatementInputPolicy(input: StatementInput): void {
       `Invalid predicate sourceType: ${input.predicate.sourceType}. Expected NetworkResource.`,
     );
   }
-
-  // Predicate URL validity/canonicalization is enforced by normalizePredicateRawIdentifier()
-  // in the statement building path.
 }

@@ -28,13 +28,13 @@ export async function loadValidatedEntityTypeSpec(fcpRoot) {
     if (!(key in spec)) errors.push(`missing required root field: ${key}`);
   }
 
-  if (typeof spec.protocolId !== 'string' || spec.protocolId.length === 0) {
-    errors.push('protocolId must be a non-empty string');
+  if (typeof spec.namespaceUrl !== 'string' || spec.namespaceUrl.length === 0) {
+    errors.push('namespaceUrl must be a non-empty URI string');
   }
 
-  const generationPattern = new RegExp(schema.properties.protocolGeneration.pattern);
-  if (typeof spec.protocolGeneration !== 'string' || !generationPattern.test(spec.protocolGeneration)) {
-    errors.push(`protocolGeneration must match ${schema.properties.protocolGeneration.pattern}`);
+  const specVersionPattern = new RegExp(schema.properties.specVersion.pattern);
+  if (typeof spec.specVersion !== 'string' || !specVersionPattern.test(spec.specVersion)) {
+    errors.push(`specVersion must match ${schema.properties.specVersion.pattern}`);
   }
 
   const datePattern = new RegExp(schema.properties.specDate.pattern);

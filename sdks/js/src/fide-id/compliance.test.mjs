@@ -18,9 +18,9 @@ function caseLabel(testCase, index) {
 }
 
 function assertVectorHeader(doc, fileLabel) {
-  if (doc.protocolId !== "FCP" || doc.protocolGeneration !== "1") {
+  if (doc.namespaceUrl !== "https://fide.work/spec/v1/" || doc.specVersion !== "1") {
     throw new Error(
-      `Invalid vector header in ${fileLabel}: expected protocolId=FCP and protocolGeneration=1`
+      `Invalid vector header in ${fileLabel}: expected namespaceUrl=https://fide.work/spec/v1/ and specVersion=1`
     );
   }
 }

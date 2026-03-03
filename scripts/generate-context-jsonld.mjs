@@ -82,7 +82,6 @@ function buildContextJsonLd(entities) {
       "https://www.w3.org/ns/prov.jsonld",
       {
         fide: "https://fide.work/spec/v1/",
-        fcp: "https://fide.work/spec/v1/context.jsonld#",
         rdfs: "http://www.w3.org/2000/01/rdf-schema#",
         owl: "http://www.w3.org/2002/07/owl#",
       },
