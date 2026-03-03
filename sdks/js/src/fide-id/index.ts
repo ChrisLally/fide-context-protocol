@@ -11,8 +11,11 @@ export { buildStatementRawIdentifier } from "./functions/buildStatementRawIdenti
 export {
     normalizeRawIdentifier,
     normalizePredicateRawIdentifier,
-    type NormalizeRawIdentifierOptions,
 } from "./functions/normalizeRawIdentifier.js";
+export {
+    DEFAULT_PREDICATE_PREFIXES,
+    expandPredicateRawIdentifier,
+} from "./functions/expandPredicateRawIdentifier.js";
 
 // Utility functions
 export { buildFideIdFromParts } from "./functions/buildFideIdFromParts.js";
@@ -34,10 +37,13 @@ export {
 
 // Types
 export type {
+    ExpandPredicateRawIdentifierOptions,
     FideEntityType,
     FideStatementPredicateEntityType,
     FideStatementPredicateSourceType,
     FideIdCalculationOptions,
+    NormalizePredicateRawIdentifierOptions,
+    NormalizeRawIdentifierOptions,
     FideEntityTypeChar,
     FideId,
     FideFingerprint,

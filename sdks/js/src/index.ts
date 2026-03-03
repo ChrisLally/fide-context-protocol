@@ -14,6 +14,7 @@ export {
     calculateFideId,
     calculateStatementFideId,
     buildStatementRawIdentifier,
+    expandPredicateRawIdentifier,
     normalizeRawIdentifier,
     normalizePredicateRawIdentifier,
 } from "./fide-id/index.js";
@@ -30,6 +31,7 @@ export {
     FCP_PROTOCOL_ID,
     FCP_PROTOCOL_GENERATION,
     FCP_SPEC_DATE,
+    DEFAULT_PREDICATE_PREFIXES,
     FIDE_ENTITY_TYPE_MAP,
     FIDE_CHAR_TO_ENTITY_TYPE,
     FIDE_ID_PREFIX,
@@ -40,9 +42,12 @@ export {
 
 // Types
 export type {
+    ExpandPredicateRawIdentifierOptions,
     FideEntityType,
     FideStatementPredicateEntityType,
     FideStatementPredicateSourceType,
+    NormalizeRawIdentifierOptions,
+    NormalizePredicateRawIdentifierOptions,
     FideEntityTypeChar,
     FideId,
     FideFingerprint,

@@ -73,6 +73,28 @@ export interface FideIdCalculationOptions {
   dangerouslySkipRawIdentifierPolicy?: boolean;
 }
 
+export interface ExpandPredicateRawIdentifierOptions {
+  /**
+   * Additional/override prefix mappings.
+   */
+  prefixes?: Record<string, string>;
+}
+
+export interface NormalizeRawIdentifierOptions {
+  skipUrlNormalization?: boolean;
+}
+
+export type NormalizePredicateRawIdentifierOptions = NormalizeRawIdentifierOptions &
+  ExpandPredicateRawIdentifierOptions & {
+    /**
+     * If true, allow prefixed predicate shorthand (e.g. schema:name)
+     * and expand to full IRI before URL validation.
+     *
+     * Default: false
+     */
+    expandPrefixes?: boolean;
+  };
+
 /**
  * Parsed Fide ID components.
  */

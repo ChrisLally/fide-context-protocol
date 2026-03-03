@@ -3,10 +3,13 @@
  * normalizeRawIdentifier: general URL normalization for http(s)-style values.
  * normalizePredicateRawIdentifier: predicate-specific validation and canonicalization.
  */
-
-export type NormalizeRawIdentifierOptions = {
-  skipUrlNormalization?: boolean;
-};
+import {
+  expandPredicateRawIdentifier,
+} from "./expandPredicateRawIdentifier.js";
+import type {
+  NormalizePredicateRawIdentifierOptions,
+  NormalizeRawIdentifierOptions,
+} from "../types.js";
 
 /**
  * Normalize a raw identifier for general entity usage.
@@ -67,13 +70,17 @@ export function normalizeRawIdentifier(rawIdentifier: string, options?: Normaliz
  */
 export function normalizePredicateRawIdentifier(
   rawIdentifier: string,
-  options?: NormalizeRawIdentifierOptions,
+  options?: NormalizePredicateRawIdentifierOptions,
 ): string {
+  const candidate = options?.expandPrefixes
+    ? expandPredicateRawIdentifier(rawIdentifier, { prefixes: options.prefixes })
+    : rawIdentifier;
+
   const skipUrlNormalization = options?.skipUrlNormalization === true;
   if (skipUrlNormalization) {
     let skipUrl: URL;
     try {
-      skipUrl = new URL(rawIdentifier);
+      skipUrl = new URL(candidate);
     } catch {
       throw new Error(
         `Invalid predicate rawIdentifier: ${rawIdentifier}. Expected canonical full URL (e.g. https://schema.org/name).`
@@ -92,14 +99,17 @@ export function normalizePredicateRawIdentifier(
       );
     }
 
-    return rawIdentifier;
+    return candidate;
   }
 
   const normalized = normalizeRawIdentifier(rawIdentifier, { skipUrlNormalization });
+  const normalizedCandidate = options?.expandPrefixes
+    ? normalizeRawIdentifier(candidate, { skipUrlNormalization })
+    : normalized;
 
   let url: URL;
   try {
-    url = new URL(normalized);
+    url = new URL(normalizedCandidate);
   } catch {
     throw new Error(
       `Invalid predicate rawIdentifier: ${rawIdentifier}. Expected canonical full URL (e.g. https://schema.org/name).`

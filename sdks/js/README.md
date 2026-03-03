@@ -1,6 +1,7 @@
 # `@fide-work/fcp`
 
 SDK docs: [https://fide.work/fcp/docs/sdks/js/](https://fide.work/fcp/docs/sdks/js/)
+Contribution guide: [https://github.com/fide/fide-context-protocol/CONTRIBUTING.md](https://github.com/fide/fide-context-protocol/CONTRIBUTING.md)
 
 ## Scripts
 
