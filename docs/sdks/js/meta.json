@@ -16,9 +16,7 @@
     "normalize-raw-identifier",
     "parse-fide-id",
     "--- Statement ---",
-    "build-canonical-statement-set",
     "build-statement",
-    "build-statements-with-root",
     "calculate-canonical-statement-set-root",
     "calculate-statement-set-root"
   ]
