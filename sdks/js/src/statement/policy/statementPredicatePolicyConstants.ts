@@ -6,6 +6,8 @@ import { FCP_SPEC } from "../../spec/index.js";
 const FORBIDDEN_PREDICATE_RULES: Record<string, string> = {
   "https://schema.org/identifier":
     "Entity identifiers are implicit in Fide IDs and raw identifiers; do not add redundant identifier predicates.",
+  "https://schema.org/sameAs":
+    "Use http://www.w3.org/2002/07/owl#sameAs for strict identity assertions; https://schema.org/sameAs is not allowed in FCP statements.",
 };
 
 /**

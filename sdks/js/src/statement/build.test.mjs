@@ -150,7 +150,7 @@ checks += 1;
 try {
     const statement = await buildStatement({
         subject: { rawIdentifier: "HTTPS://X.COM:443/JeffBezos", entityType: "Person", sourceType: "NetworkResource" },
-        predicate: { rawIdentifier: "https://schema.org/sameAs", entityType: "Concept", sourceType: "NetworkResource" },
+        predicate: { rawIdentifier: "https://schema.org/about", entityType: "Concept", sourceType: "NetworkResource" },
         object: { rawIdentifier: "HTTP://EXAMPLE.COM:80/Profile", entityType: "CreativeWork", sourceType: "NetworkResource" }
     });
 
