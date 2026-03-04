@@ -3,6 +3,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadValidatedPredicatePrefixSpec } from "./lib/predicate-prefixes-spec.mjs";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const FCP_ROOT = resolve(SCRIPT_DIR, "..");
@@ -20,22 +21,7 @@ function parseEntityTypeSpec(source) {
     .sort((a, b) => a.def.code.localeCompare(b.def.code));
 }
 
-function standardPrefixToBase() {
-  return {
-    schema: "https://schema.org/",
-    rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    rdfs: "http://www.w3.org/2000/01/rdf-schema#",
-    xsd: "http://www.w3.org/2001/XMLSchema#",
-    org: "http://www.w3.org/ns/org#",
-    prov: "http://www.w3.org/ns/prov#",
-    sec: "https://w3id.org/security#",
-    owl: "http://www.w3.org/2002/07/owl#",
-    skos: "http://www.w3.org/2004/02/skos/core#",
-  };
-}
-
-function toStandardUris(rawStandards) {
-  const map = standardPrefixToBase();
+function toStandardUris(rawStandards, map) {
 
   return (rawStandards ?? [])
     .map((item) => item.trim())
@@ -50,7 +36,7 @@ function toStandardUris(rawStandards) {
     .filter((value) => Boolean(value));
 }
 
-function buildContextJsonLd(entities) {
+function buildContextJsonLd(entities, prefixes) {
   const graph = entities.map(({ name, def }) => {
     const node = {
       "@id": `fide:${name}`,
@@ -64,7 +50,7 @@ function buildContextJsonLd(entities) {
     if (def.layer) node["schema:category"] = def.layer;
     if (def.litmus) node["schema:disambiguatingDescription"] = def.litmus;
 
-    const standardUris = toStandardUris(def.standards);
+    const standardUris = def.standards;
     if (standardUris.length > 0) {
       if (def.standardFit === "Exact") {
         node["owl:equivalentClass"] = standardUris.map((uri) => ({ "@id": uri }));
@@ -82,8 +68,8 @@ function buildContextJsonLd(entities) {
       "https://www.w3.org/ns/prov.jsonld",
       {
         fide: "https://fide.work/spec/v1/",
-        rdfs: "http://www.w3.org/2000/01/rdf-schema#",
-        owl: "http://www.w3.org/2002/07/owl#",
+        rdfs: prefixes.rdfs,
+        owl: prefixes.owl,
       },
     ],
     "@id": "fide:entity-types",
@@ -97,8 +83,19 @@ function buildContextJsonLd(entities) {
 
 async function main() {
   const source = await readFile(ENTITY_TYPES_PATH, "utf8");
+  const prefixSpec = await loadValidatedPredicatePrefixSpec(FCP_ROOT);
   const entities = parseEntityTypeSpec(source);
-  const contextJson = buildContextJsonLd(entities);
+  const normalizedEntities = entities.map((entry) => ({
+    ...entry,
+    def: {
+      ...entry.def,
+      standards: toStandardUris(entry.def.standards, prefixSpec.prefixes),
+    },
+  }));
+  const contextJson = buildContextJsonLd(
+    normalizedEntities,
+    prefixSpec.prefixes,
+  );
   await writeFile(CONTEXT_PATH, contextJson, "utf8");
   console.log(`Generated context JSON-LD for ${entities.length} entity types.`);
 }

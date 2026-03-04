@@ -80,6 +80,13 @@ export interface ExpandPredicateRawIdentifierOptions {
   prefixes?: Record<string, string>;
 }
 
+export interface CompactPredicateRawIdentifierOptions {
+  /**
+   * Additional/override prefix mappings.
+   */
+  prefixes?: Record<string, string>;
+}
+
 export interface NormalizeRawIdentifierOptions {
   skipUrlNormalization?: boolean;
 }

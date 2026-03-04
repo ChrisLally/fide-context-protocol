@@ -1,5 +1,5 @@
 /**
- * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json.
+ * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json + spec/v1/predicate-prefixes.json.
  * DO NOT EDIT DIRECTLY. RUN: pnpm run generate:fcp
  */
 export const FCP_NAMESPACE_URL = "https://fide.work/spec/v1/" as const;
@@ -62,3 +62,29 @@ export const FIDE_ID_PREFIX = 'did:fide:0x' as const;
 export const FIDE_ID_HEX_LENGTH = 40;
 export const FIDE_ID_LENGTH = FIDE_ID_PREFIX.length + FIDE_ID_HEX_LENGTH;
 export const FIDE_ID_FINGERPRINT_LENGTH = 36;
+
+/**
+ * Prefix map for expanding standards CURIEs to canonical IRIs.
+ */
+export const STANDARD_PREFIXES: Record<string, string> = {
+  schema: "https://schema.org/",
+  rdf: "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
+  rdfs: "https://www.w3.org/2000/01/rdf-schema#",
+  xsd: "https://www.w3.org/2001/XMLSchema#",
+  org: "https://www.w3.org/ns/org#",
+  prov: "https://www.w3.org/ns/prov#",
+  sec: "https://w3id.org/security#",
+  owl: "https://www.w3.org/2002/07/owl#",
+  skos: "https://www.w3.org/2004/02/skos/core#",
+} as const;
+
+/**
+ * Default prefix map for predicate shorthand expansion/compaction.
+ */
+export const DEFAULT_PREDICATE_PREFIXES: Record<string, string> = {
+  schema: STANDARD_PREFIXES.schema,
+  owl: STANDARD_PREFIXES.owl,
+  rdf: STANDARD_PREFIXES.rdf,
+  rdfs: STANDARD_PREFIXES.rdfs,
+  prov: STANDARD_PREFIXES.prov,
+} as const;

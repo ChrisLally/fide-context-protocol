@@ -14,6 +14,7 @@ Fide Context Protocol workspace.
 Entity vocabulary and JS SDK constants are generated from:
 
 - `spec/v1/entity-types.json`
+- `spec/v1/predicate-prefixes.json`
 
 Run from repo root:
 

@@ -1,7 +1,12 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
-import { calculateFideId, calculateStatementFideId } from "../../dist/index.js";
+import {
+  calculateFideId,
+  calculateStatementFideId,
+  compactPredicateRawIdentifier,
+  expandPredicateRawIdentifier,
+} from "../../dist/index.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const rawFideIdVectors = await readFile(resolve(here, "./vectors/calculateFideId.v0.json"), "utf8");
@@ -178,6 +183,51 @@ try {
 } catch (error) {
   failures += 1;
   console.error(`[FAIL] normalize-raw-identifier-option threw unexpectedly: ${error.message}`);
+}
+
+// Predicate shorthand check: expand known prefix.
+checks += 1;
+try {
+  const expanded = expandPredicateRawIdentifier("owl:sameAs");
+  if (expanded !== "https://www.w3.org/2002/07/owl#sameAs") {
+    failures += 1;
+    console.error("[FAIL] predicate-expand expected owl:sameAs expansion");
+  } else if (verbose) {
+    console.log(`[PASS] predicate-expand produced ${expanded}`);
+  }
+} catch (error) {
+  failures += 1;
+  console.error(`[FAIL] predicate-expand threw unexpectedly: ${error.message}`);
+}
+
+// Predicate shorthand check: compact known prefix.
+checks += 1;
+try {
+  const compacted = compactPredicateRawIdentifier("https://www.w3.org/2002/07/owl#sameAs");
+  if (compacted !== "owl:sameAs") {
+    failures += 1;
+    console.error("[FAIL] predicate-compact expected owl:sameAs compaction");
+  } else if (verbose) {
+    console.log(`[PASS] predicate-compact produced ${compacted}`);
+  }
+} catch (error) {
+  failures += 1;
+  console.error(`[FAIL] predicate-compact threw unexpectedly: ${error.message}`);
+}
+
+// Predicate shorthand check: prov prefix is part of defaults.
+checks += 1;
+try {
+  const expanded = expandPredicateRawIdentifier("prov:hadPrimarySource");
+  if (expanded !== "https://www.w3.org/ns/prov#hadPrimarySource") {
+    failures += 1;
+    console.error("[FAIL] predicate-expand-prov expected prov expansion");
+  } else if (verbose) {
+    console.log(`[PASS] predicate-expand-prov produced ${expanded}`);
+  }
+} catch (error) {
+  failures += 1;
+  console.error(`[FAIL] predicate-expand-prov threw unexpectedly: ${error.message}`);
 }
 
 if (failures > 0) {

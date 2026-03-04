@@ -14,6 +14,7 @@ export {
     calculateFideId,
     calculateStatementFideId,
     buildStatementRawIdentifier,
+    compactPredicateRawIdentifier,
     expandPredicateRawIdentifier,
     normalizeRawIdentifier,
     normalizePredicateRawIdentifier,
@@ -31,6 +32,7 @@ export {
     FCP_NAMESPACE_URL,
     FCP_SPEC_VERSION,
     FCP_SPEC_DATE,
+    STANDARD_PREFIXES,
     DEFAULT_PREDICATE_PREFIXES,
     FIDE_ENTITY_TYPE_MAP,
     FIDE_CHAR_TO_ENTITY_TYPE,
@@ -42,6 +44,7 @@ export {
 
 // Types
 export type {
+    CompactPredicateRawIdentifierOptions,
     ExpandPredicateRawIdentifierOptions,
     FideEntityType,
     FideStatementPredicateEntityType,

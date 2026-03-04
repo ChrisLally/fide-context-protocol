@@ -13,9 +13,9 @@ export {
     normalizePredicateRawIdentifier,
 } from "./functions/normalizeRawIdentifier.js";
 export {
-    DEFAULT_PREDICATE_PREFIXES,
     expandPredicateRawIdentifier,
 } from "./functions/expandPredicateRawIdentifier.js";
+export { compactPredicateRawIdentifier } from "./functions/compactPredicateRawIdentifier.js";
 
 // Utility functions
 export { buildFideIdFromParts } from "./functions/buildFideIdFromParts.js";
@@ -27,6 +27,8 @@ export {
     FCP_NAMESPACE_URL,
     FCP_SPEC_VERSION,
     FCP_SPEC_DATE,
+    STANDARD_PREFIXES,
+    DEFAULT_PREDICATE_PREFIXES,
     FIDE_ENTITY_TYPE_MAP,
     FIDE_CHAR_TO_ENTITY_TYPE,
     FIDE_ID_PREFIX,
@@ -37,6 +39,7 @@ export {
 
 // Types
 export type {
+    CompactPredicateRawIdentifierOptions,
     ExpandPredicateRawIdentifierOptions,
     FideEntityType,
     FideStatementPredicateEntityType,

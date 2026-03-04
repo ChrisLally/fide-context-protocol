@@ -4,8 +4,8 @@
     "https://www.w3.org/ns/prov.jsonld",
     {
       "fide": "https://fide.work/spec/v1/",
-      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-      "owl": "http://www.w3.org/2002/07/owl#"
+      "rdfs": "https://www.w3.org/2000/01/rdf-schema#",
+      "owl": "https://www.w3.org/2002/07/owl#"
     }
   ],
   "@id": "fide:entity-types",
@@ -23,7 +23,7 @@
       "schema:disambiguatingDescription": "Not a verified fact; verification is application-level. Not what it represents.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"
         }
       ]
     },
@@ -53,7 +53,7 @@
       "schema:disambiguatingDescription": "Not a single person or software. Not a query-defined group (e.g. alumni by year); create only when the group itself needs to act.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/ns/org#Organization"
+          "@id": "https://www.w3.org/ns/org#Organization"
         }
       ]
     },
@@ -71,7 +71,7 @@
           "@id": "https://schema.org/SoftwareApplication"
         },
         {
-          "@id": "http://www.w3.org/ns/prov#SoftwareAgent"
+          "@id": "https://www.w3.org/ns/prov#SoftwareAgent"
         }
       ]
     },
@@ -206,7 +206,7 @@
           "@id": "https://schema.org/Action"
         },
         {
-          "@id": "http://www.w3.org/ns/prov#Activity"
+          "@id": "https://www.w3.org/ns/prov#Activity"
         }
       ]
     },
@@ -239,10 +239,10 @@
       "schema:disambiguatingDescription": "Not a Concept.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#string"
+          "@id": "https://www.w3.org/2001/XMLSchema#string"
         }
       ]
     },
@@ -257,10 +257,10 @@
       "schema:disambiguatingDescription": "Not a decimal or string.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#integer"
+          "@id": "https://www.w3.org/2001/XMLSchema#integer"
         }
       ]
     },
@@ -275,10 +275,10 @@
       "schema:disambiguatingDescription": "Not an integer.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#decimal"
+          "@id": "https://www.w3.org/2001/XMLSchema#decimal"
         }
       ]
     },
@@ -293,10 +293,10 @@
       "schema:disambiguatingDescription": "Not a number or string.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+          "@id": "https://www.w3.org/2001/XMLSchema#boolean"
         }
       ]
     },
@@ -311,10 +311,10 @@
       "schema:disambiguatingDescription": "Not a datetime or time.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#date"
+          "@id": "https://www.w3.org/2001/XMLSchema#date"
         }
       ]
     },
@@ -329,10 +329,10 @@
       "schema:disambiguatingDescription": "Not a date or datetime.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#time"
+          "@id": "https://www.w3.org/2001/XMLSchema#time"
         }
       ]
     },
@@ -347,10 +347,10 @@
       "schema:disambiguatingDescription": "Not a date or time alone.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+          "@id": "https://www.w3.org/2001/XMLSchema#dateTime"
         }
       ]
     },
@@ -365,10 +365,10 @@
       "schema:disambiguatingDescription": "Not a datetime.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#duration"
+          "@id": "https://www.w3.org/2001/XMLSchema#duration"
         }
       ]
     },
@@ -383,10 +383,10 @@
       "schema:disambiguatingDescription": "Not plain text.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+          "@id": "https://www.w3.org/2001/XMLSchema#anyURI"
         }
       ]
     },
@@ -401,10 +401,10 @@
       "schema:disambiguatingDescription": "Not a string.",
       "owl:equivalentClass": [
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#Literal"
         },
         {
-          "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+          "@id": "https://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
         }
       ]
     }

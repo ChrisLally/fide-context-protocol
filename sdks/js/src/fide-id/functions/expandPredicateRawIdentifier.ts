@@ -1,14 +1,7 @@
+import {
+  DEFAULT_PREDICATE_PREFIXES,
+} from "../constants.js";
 import type { ExpandPredicateRawIdentifierOptions } from "../types.js";
-
-/**
- * Default prefix map for predicate shorthand expansion.
- */
-export const DEFAULT_PREDICATE_PREFIXES: Record<string, string> = {
-  schema: "https://schema.org/",
-  owl: "https://www.w3.org/2002/07/owl#",
-  rdf: "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
-  rdfs: "https://www.w3.org/2000/01/rdf-schema#",
-} as const;
 
 /**
  * Expand a prefixed predicate token (e.g. `schema:name`) to a full IRI.

@@ -4,6 +4,7 @@ import { mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadValidatedEntityTypeSpec } from './lib/entity-types-spec.mjs';
+import { loadValidatedPredicatePrefixSpec } from './lib/predicate-prefixes-spec.mjs';
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const FCP_ROOT = resolve(SCRIPT_DIR, '..');
@@ -79,7 +80,7 @@ function normalizeSpec(raw) {
   return { namespaceUrl, specVersion, specDate, entities };
 }
 
-function generateConstantsTs(spec) {
+function generateConstantsTs(spec, prefixSpec) {
   const entityTypeMapEntries = spec.entities
     .map((entity) => `    ${entity.name}: ${quote(entity.code)},`)
     .join('\n');
@@ -88,8 +89,16 @@ function generateConstantsTs(spec) {
     .map((entity) => `    ${quote(entity.code)}: ${quote(entity.name)},`)
     .join('\n');
 
+  const standardPrefixEntries = Object.entries(prefixSpec.prefixes)
+    .map(([prefix, base]) => `  ${prefix}: ${quote(base)},`)
+    .join('\n');
+
+  const defaultPredicatePrefixEntries = prefixSpec.defaultPredicatePrefixes
+    .map((prefix) => `  ${prefix}: STANDARD_PREFIXES.${prefix},`)
+    .join('\n');
+
   return `/**
- * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json.
+ * THIS FILE IS AUTO-GENERATED FROM spec/v1/entity-types.json + spec/v1/predicate-prefixes.json.
  * DO NOT EDIT DIRECTLY. RUN: pnpm run generate:fcp
  */
 export const FCP_NAMESPACE_URL = ${quote(spec.namespaceUrl)} as const;
@@ -108,6 +117,20 @@ export const FIDE_ID_PREFIX = 'did:fide:0x' as const;
 export const FIDE_ID_HEX_LENGTH = 40;
 export const FIDE_ID_LENGTH = FIDE_ID_PREFIX.length + FIDE_ID_HEX_LENGTH;
 export const FIDE_ID_FINGERPRINT_LENGTH = 36;
+
+/**
+ * Prefix map for expanding standards CURIEs to canonical IRIs.
+ */
+export const STANDARD_PREFIXES: Record<string, string> = {
+${standardPrefixEntries}
+} as const;
+
+/**
+ * Default prefix map for predicate shorthand expansion/compaction.
+ */
+export const DEFAULT_PREDICATE_PREFIXES: Record<string, string> = {
+${defaultPredicatePrefixEntries}
+} as const;
 `;
 }
 
@@ -197,29 +220,13 @@ description: ${quote(entity.description)}
 full: true
 ---
 
-<div className="flex flex-col gap-4 mt-4 mb-8">
-  <div className="flex items-center gap-2">
-    <strong className="min-w-[150px]">Definition:</strong>
-    <span className="text-sm">${escapeMdx(entity.description)}</span>
-  </div>
-  <div className="flex items-center gap-2">
-    <strong className="min-w-[150px]">Not:</strong>
-    <span className="text-sm">${escapeMdx(entity.litmus)}</span>
-  </div>
-  <div className="flex items-center gap-2">
-    <strong className="min-w-[150px]">Layer:</strong>
-    <a href="/docs/fcp/vocabulary#${toSlug(entity.layer)}" className="text-primary hover:underline font-medium">${entity.layer}</a>
-  </div>
-  <div className="flex items-center gap-2">
-    <strong className="min-w-[150px]">Hex Code:</strong>
-    <code className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-mono text-sm">${entity.code}</code>
-  </div>
-  <div className="flex items-center gap-2">
-    <strong className="min-w-[150px]">Standard Alignment:</strong>
-    <span className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground text-sm">${entity.standards.join(' + ')}</span>
-    <span className="text-muted-foreground text-sm">(${entity.standardFit} fit)</span>
-  </div>
-</div>
+## Summary
+
+- **Definition:** ${escapeMdx(entity.description)}
+- **Not:** ${escapeMdx(entity.litmus)}
+- **Layer:** [${entity.layer}](/docs/fcp/vocabulary#${toSlug(entity.layer)})
+- **Hex Code:** \`${entity.code}\`
+- **Standard Alignment:** ${entity.standards.map((standard) => `\`${standard}\``).join(" + ")} (${entity.standardFit} fit)
 `;
 }
 
@@ -269,10 +276,11 @@ async function writeVocabulary(spec) {
 
 async function main() {
   const rawSpec = await loadValidatedEntityTypeSpec(FCP_ROOT);
+  const prefixSpec = await loadValidatedPredicatePrefixSpec(FCP_ROOT);
   const spec = normalizeSpec(rawSpec);
 
   await mkdir(dirname(SDK_SPEC_MODULE_PATH), { recursive: true });
-  await writeFile(SDK_CONSTANTS_PATH, generateConstantsTs(spec), 'utf8');
+  await writeFile(SDK_CONSTANTS_PATH, generateConstantsTs(spec, prefixSpec), 'utf8');
   await writeFile(SDK_SPEC_MODULE_PATH, generateSpecModuleTs(spec), 'utf8');
   await writeVocabulary(spec);
 
