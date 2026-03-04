@@ -222,11 +222,13 @@ full: true
 
 ## Summary
 
-- **Definition:** ${escapeMdx(entity.description)}
-- **Not:** ${escapeMdx(entity.litmus)}
 - **Layer:** [${entity.layer}](/docs/fcp/vocabulary#${toSlug(entity.layer)})
 - **Hex Code:** \`${entity.code}\`
 - **Standard Alignment:** ${entity.standards.map((standard) => `\`${standard}\``).join(" + ")} (${entity.standardFit} fit)
+
+<Callout type="warning" title="Not">
+  ${escapeMdx(entity.litmus)}
+</Callout>
 `;
 }
 
